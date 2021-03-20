@@ -1,0 +1,11 @@
+hu\faceit\discord\EventListener.class
+hu\faceit\models\MatchesAllStats.class
+hu\faceit\models\FaceItData.class
+hu\faceit\config\BotConfiguration.class
+hu\faceit\service\PlayerService.class
+hu\faceit\FaceitStatsApplication.class
+hu\faceit\discord\MessageCreateListener.class
+hu\faceit\discord\MessageListener.class
+hu\faceit\discord\MessageUpdateListener.class
+hu\faceit\presentation\Controller.class
+hu\faceit\service\MatchService.class

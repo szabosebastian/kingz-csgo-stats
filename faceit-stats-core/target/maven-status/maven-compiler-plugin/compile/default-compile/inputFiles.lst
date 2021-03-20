@@ -1,0 +1,11 @@
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\config\BotConfiguration.java
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\models\MatchesAllStats.java
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\service\PlayerService.java
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\discord\EventListener.java
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\FaceitStatsApplication.java
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\discord\MessageCreateListener.java
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\discord\MessageListener.java
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\discord\MessageUpdateListener.java
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\presentation\Controller.java
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\service\MatchService.java
+D:\Szebi\faceit-stats\faceit-stats-core\src\main\java\hu\faceit\models\FaceItData.java

@@ -1,0 +1,5 @@
+faceit:
+  auth:
+    bearer: 9c33da28-f47b-4bc7-b3dc-85666e89858c
+
+token: ${DISCORD_TOKEN}

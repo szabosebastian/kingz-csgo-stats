@@ -5,24 +5,28 @@ import java.util.List;
 public class MatchesAllStats {
 
     private List<String> matchesId;
+    private int games;
     private String playerId;
     private String nickName;
     private int tripleKills;
     private Double kDRatio;
     private int assists;
-    private int deaths;
+    private Double deaths;
     private Double headshotPercentage;
-    private int kills;
+    private Double kills;
     private int headshots;
-    private int kRratio;
+    private Double kRratio;
     private int mvps;
     private int pentaKills;
     private int quadroKills;
+    private int playedRounds;
 
     @Override
     public String toString() {
-        return "player_id: " + this.playerId + "\n" +
-                "nickname: " + this.nickName + "\n" +
+        return "Player id: " + this.playerId + "\n" +
+                "Nickname: " + this.nickName + "\n" +
+                "Games: " + this.games + "\n" +
+                "Played rounds: " + this.playedRounds + "\n" +
                 "MVPs: " + this.mvps + "\n" +
                 "K/D Ratio: " + this.kDRatio + "\n" +
                 "Penta Kills: " + this.pentaKills + "\n" +
@@ -37,23 +41,27 @@ public class MatchesAllStats {
     }
 
     public MatchesAllStats() {
+        this.deaths = 0.0;
+        this.kills = 0.0;
+        this.kRratio = 0.0;
+        this.kDRatio = 0.0;
+        this.headshotPercentage = 0.0;
     }
 
-    public MatchesAllStats(List<String> matchesId, String playerId, String nickName, int tripleKills, Double kDRatio, int assists, int deaths, Double headshotPercentage, int kills, int headshots, int kRratio, int mvps, int pentaKills, int quadroKills) {
-        this.matchesId = matchesId;
-        this.playerId = playerId;
-        this.nickName = nickName;
-        this.tripleKills = tripleKills;
-        this.kDRatio = kDRatio;
-        this.assists = assists;
-        this.deaths = deaths;
-        this.headshotPercentage = headshotPercentage;
-        this.kills = kills;
-        this.headshots = headshots;
-        this.kRratio = kRratio;
-        this.mvps = mvps;
-        this.pentaKills = pentaKills;
-        this.quadroKills = quadroKills;
+    public int getPlayedRounds() {
+        return playedRounds;
+    }
+
+    public void setPlayedRounds(int playedRounds) {
+        this.playedRounds = playedRounds;
+    }
+
+    public int getGames() {
+        return games;
+    }
+
+    public void setGames(int games) {
+        this.games = games;
     }
 
     public Double getHeadshotPercentage() {
@@ -112,20 +120,19 @@ public class MatchesAllStats {
         this.assists = assists;
     }
 
-    public int getDeaths() {
+    public Double getDeaths() {
         return deaths;
     }
 
-    public void setDeaths(int deaths) {
+    public void setDeaths(Double deaths) {
         this.deaths = deaths;
     }
 
-
-    public int getKills() {
+    public Double getKills() {
         return kills;
     }
 
-    public void setKills(int kills) {
+    public void setKills(Double kills) {
         this.kills = kills;
     }
 
@@ -137,11 +144,11 @@ public class MatchesAllStats {
         this.headshots = headshots;
     }
 
-    public int getkRratio() {
+    public Double getkRratio() {
         return kRratio;
     }
 
-    public void setkRratio(int kRratio) {
+    public void setkRratio(Double kRratio) {
         this.kRratio = kRratio;
     }
 

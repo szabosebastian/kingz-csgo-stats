@@ -37,6 +37,7 @@ public class MatchService extends FaceItData {
 
     public MatchesAllStats getMatchesAllStats(String name, Integer from, Integer to, Integer offset, Integer limit) {
         MatchesAllStats stats = new MatchesAllStats();
+        int roundsCounter = 0;
 
         PlayerInfo playerInfo = playerService.getPlayerByName(name);
         List<String> matchesIdList = getMatchIdListByDate(name, from, to, offset, limit);
@@ -44,24 +45,27 @@ public class MatchService extends FaceItData {
         stats.setMatchesId(matchesIdList);
         stats.setPlayerId(players.get(name));
         stats.setNickName(playerInfo.getNickname());
+        stats.setGames(matchesIdList.size());
 
         for (String matchId : matchesIdList) {
             MatchStats currentMatchStat = faceitGatewayIF.getPlayerMatchStats(bearerToken, matchId);
+            roundsCounter += Integer.parseInt(currentMatchStat.getRounds().get(0).getRoundStats().getRounds());
             for (Team team : currentMatchStat.getRounds().get(0).getTeams()) {
                 for (Player player : team.getPlayers()) {
                     if (player.getPlayerId().equals(players.get(name))) {
                         PlayerStats playerStats = player.getPlayerStats();
                         stats.setTripleKills(stats.getTripleKills() + Integer.parseInt(playerStats.getTripleKills()));
-                        //stats.setkRratio((stats.getkRratio() + Integer.parseInt(playerStats.getKDRatio())) / matchesIdList.size());
-                        //stats.setkRratio((stats.getkRratio() + Integer.parseInt(playerStats.getKRRatio())) / matchesIdList.size());
                         stats.setAssists(stats.getAssists() + Integer.parseInt(playerStats.getAssists()));
-                        stats.setDeaths(stats.getDeaths() + Integer.parseInt(playerStats.getDeaths()));
-                        stats.setKills(stats.getKills() + Integer.parseInt(playerStats.getKills()));
+                        stats.setDeaths(stats.getDeaths() + Double.parseDouble(playerStats.getDeaths()));
+                        stats.setKills(stats.getKills() + Double.parseDouble(playerStats.getKills()));
                         stats.setHeadshots(stats.getHeadshots() + Integer.parseInt(playerStats.getHeadshots()));
                         stats.setMvps(stats.getMvps() + Integer.parseInt(playerStats.getMVPs()));
                         stats.setPentaKills(stats.getPentaKills() + Integer.parseInt(playerStats.getPentaKills()));
                         stats.setQuadroKills(stats.getQuadroKills() + Integer.parseInt(playerStats.getQuadroKills()));
-                        //stats.setHeadshotPercentage((double) (stats.getKills() / stats.getHeadshots()));
+                        stats.setkRratio(stats.getKills() / roundsCounter);
+                        stats.setkDRatio((stats.getKills() / stats.getDeaths()));
+                        stats.setHeadshotPercentage((double) stats.getHeadshots() / (stats.getKills()));
+                        stats.setPlayedRounds(roundsCounter);
                     }
                 }
             }

@@ -29,7 +29,7 @@ public abstract class MessageListener {
                 from = Integer.valueOf(content.substring(content.indexOf("&") + 1));
                 return getMessage(eventMessage, name, from, null);
             }
-            return getMessage(eventMessage, name, (int) Instant.now().getEpochSecond(), null);
+            return getMessage(eventMessage, name, 1, null);
         }
 
         return Mono.just(eventMessage)

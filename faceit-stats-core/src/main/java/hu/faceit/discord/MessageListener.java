@@ -5,7 +5,6 @@ import hu.faceit.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.core.publisher.Mono;
 
-import java.time.Instant;
 import java.util.List;
 
 public abstract class MessageListener {
@@ -20,23 +19,23 @@ public abstract class MessageListener {
         Integer from;
         Integer to;
 
-
         //TODO: ne válaszoljon minden üzenetre
-        if (commandList.contains(getName(content))) {
+        if (commandList.stream().anyMatch(str -> str.equals((getName(content))))) {
             name = content.substring(content.indexOf("!") + 1);
-            if (content.contains("&")) {
-                name = content.substring(content.indexOf("!") + 1, content.indexOf("&"));
-                from = Integer.valueOf(content.substring(content.indexOf("&") + 1));
+            if (content.contains("#")) {
+                name = content.substring(content.indexOf("!") + 1, content.indexOf("#"));
+                from = Integer.valueOf(content.substring(content.indexOf("#") + 1));
                 return getMessage(eventMessage, name, from, null);
             }
-            return getMessage(eventMessage, name, 1, null);
+            return getMessage(eventMessage, name, 0, null);
         }
 
         return Mono.just(eventMessage)
                 .filter(message -> message.getAuthor().map(user -> !user.isBot()).orElse(false))
+                .filter(message -> message.getContent().equalsIgnoreCase("!commands"))
                 .flatMap(Message::getChannel)
                 .flatMap(channel -> channel.createMessage("Napi stat: !lajos, !miki, !laci, !andor, !damni, !szebi" + "\n" +
-                        "X napra visszamenő összegzett stat: !andor&X, !laci&X ..."))
+                        "X napra visszamenő összegzett stat: !andor#X, !laci#X ..."))
                 .then();
     }
 
@@ -48,10 +47,10 @@ public abstract class MessageListener {
                 .then();
     }
 
-    private String getName(String longName) {
-        if (longName.contains("&")) {
-            return longName.substring(longName.indexOf("!"), longName.indexOf("&"));
+    private String getName(String fullName) {
+        if (fullName.contains("#") && fullName.contains("!")) {
+            return fullName.substring(fullName.indexOf("!"), fullName.indexOf("#"));
         }
-        return longName;
+        return fullName;
     }
 }

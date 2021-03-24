@@ -1,4 +1,4 @@
-package hu.faceit.config;
+package hu.faceit.discord.config;
 
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;

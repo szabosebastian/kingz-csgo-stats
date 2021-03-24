@@ -4,17 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>faceit-stats</artifactId>
-        <groupId>org.example</groupId>
+        <groupId>hu.kingz.csgo.stats</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
 
     <artifactId>faceit-stats-core</artifactId>
 
     <dependencies>
-
         <dependency>
-            <groupId>org.example</groupId>
+            <groupId>hu.kingz.csgo.stats</groupId>
             <artifactId>faceit-gateway</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -23,13 +23,14 @@
             <artifactId>discord4j-core</artifactId>
             <version>3.1.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.3.9.RELEASE</version>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
-
 </project>

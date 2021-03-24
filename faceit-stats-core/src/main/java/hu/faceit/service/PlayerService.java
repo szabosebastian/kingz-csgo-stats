@@ -37,12 +37,16 @@ public class PlayerService extends FaceItData {
         return faceitGatewayIF.getPlayerHistory(bearerToken,
                 players.get(name),
                 "csgo",
-                dayToTimestamp(from),
+                from == 0 ? (int) Instant.now().minus(12, ChronoUnit.HOURS).getEpochSecond() : dayToTimestamp(from),
                 dayToTimestamp(to),
                 offset, limit);
     }
 
-    private Integer dayToTimestamp(Integer day) {
+    public Integer dayToTimestamp(Integer day) {
         return (int) Instant.now().minus(day, ChronoUnit.DAYS).getEpochSecond();
+    }
+
+    public Integer hourToTimestamp(Integer hour) {
+        return (int) Instant.now().minus(hour, ChronoUnit.HOURS).getEpochSecond();
     }
 }

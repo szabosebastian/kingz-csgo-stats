@@ -1,5 +1,7 @@
 package hu.faceit.models;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class MatchesAllStats {
@@ -20,6 +22,8 @@ public class MatchesAllStats {
     private int pentaKills;
     private int quadroKills;
     private int playedRounds;
+    NumberFormat formatter = new DecimalFormat("#0.000");
+
 
     @Override
     public String toString() {
@@ -28,16 +32,16 @@ public class MatchesAllStats {
                 "Games: " + this.games + "\n" +
                 "Played rounds: " + this.playedRounds + "\n" +
                 "MVPs: " + this.mvps + "\n" +
-                "K/D Ratio: " + this.kDRatio + "\n" +
-                "Penta Kills: " + this.pentaKills + "\n" +
-                "Deaths: " + this.deaths + "\n" +
                 "Kills: " + this.kills + "\n" +
                 "Assists: " + this.assists + "\n" +
+                "Deaths: " + this.deaths + "\n" +
                 "Headshots: " + this.headshots + "\n" +
-                "Quadro Kills: " + this.quadroKills + "\n" +
+                "Headshots: " + formatter.format(this.headshotPercentage) + "%" + "\n" +
                 "Triple Kills: " + this.tripleKills + "\n" +
-                "Headshots %: " + this.headshotPercentage + "\n" +
-                "K/R Ratio: " + this.kRratio + "\n";
+                "Quadro Kills: " + this.quadroKills + "\n" +
+                "Penta Kills: " + this.pentaKills + "\n" +
+                "K/D Ratio: " + formatter.format(this.kDRatio) + "\n" +
+                "K/R Ratio: " + formatter.format(this.kRratio) + "\n";
     }
 
     public MatchesAllStats() {

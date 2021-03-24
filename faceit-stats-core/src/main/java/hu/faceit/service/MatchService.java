@@ -25,14 +25,14 @@ public class MatchService extends FaceItData {
         this.faceitGatewayIF = faceitGatewayIF;
     }
 
+    public MatchStats getMatchStats(String name, Integer from, Integer to, Integer offset, Integer limit) {
+        return faceitGatewayIF.getPlayerMatchStats(bearerToken, getMatchIdListByDate(name, from, to, offset, limit).get(0));
+    }
+
     public List<String> getMatchIdListByDate(String name, Integer from, Integer to, Integer offset, Integer limit) {
         return playerService.getPlayerHistory(name, from, to, offset, limit).getItems().stream()
                 .map(Item::getMatchId)
                 .collect(Collectors.toList());
-    }
-
-    public MatchStats getMatchStats(String name, Integer from, Integer to, Integer offset, Integer limit) {
-        return faceitGatewayIF.getPlayerMatchStats(bearerToken, getMatchIdListByDate(name, from, to, offset, limit).get(0));
     }
 
     public MatchesAllStats getMatchesAllStats(String name, Integer from, Integer to, Integer offset, Integer limit) {
@@ -64,7 +64,7 @@ public class MatchService extends FaceItData {
                         stats.setQuadroKills(stats.getQuadroKills() + Integer.parseInt(playerStats.getQuadroKills()));
                         stats.setkRratio(stats.getKills() / roundsCounter);
                         stats.setkDRatio((stats.getKills() / stats.getDeaths()));
-                        stats.setHeadshotPercentage((double) stats.getHeadshots() / (stats.getKills()));
+                        stats.setHeadshotPercentage(((double) stats.getHeadshots() / (stats.getKills())) * 100);
                         stats.setPlayedRounds(roundsCounter);
                     }
                 }
